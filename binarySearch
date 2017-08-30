@@ -2,7 +2,7 @@
 
 //input: an assorted array
 //output: index of the given key
-
+//intersting!!
 // ============
 
 // solving with binary search method , when dividing array in to half at each step
