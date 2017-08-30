@@ -1,0 +1,105 @@
+//Given a sorted array of integers, return the index of the given key. Return -1 if not found.
+
+//input: an assorted array
+//output: index of the given key
+
+// ============
+
+// solving with binary search method , when dividing array in to half at each step
+// runtime complexity: O(logn)
+// memory complexity: O(logn)
+
+let binary_search_sec = function(array, key, low, high) {
+  //check if low is greater than high index, return -1 (base case)
+  if (low > high) {
+  	return -1;
+  //if not, 
+  } 
+    // find and set the mid index 
+    let mid = low + (Math.floor(high - low) / 2);
+    //check if the key is equal to the mid index element
+    if (key === array[mid]) {
+      return mid;
+    }
+    //check if the mid index is greater than key
+    else if (array[mid] > key) {
+      //use recursive function on the left half of the array
+      return binary_search_sec(array, key, low, (mid - 1));
+    //otherwise,
+    } else {
+      //use recurisve function on the right half of the array
+      return binary_search_sec(array, key, (mid + 1), high);
+    }
+  	
+
+};
+
+let binary_search = function(array, key) {
+  //invoke the recursive function using 0 as the low index and last element index as the high index
+  return binary_search_sec(array, key, 0, (array.lenght - 1));
+};
+
+//////////////////////////////////////////////////////////////
+
+// iterative solution
+//runtime complexity: O(logn)
+//memory complexity: constant O(1)
+
+
+const binary_search_iterative = function(array, key) {
+  //set low index to 0
+  let low = 0;
+  //set high index to the last element index
+  let high = array.length - 1;
+  //as long as the low index is less that the high index
+  while (low <= high) {
+    //find and set the mid index
+    let mid = low + (Math.floor(high - low) / 2);
+    //check if mid index is equal to the key, return mid index
+    if (key === array[mid]) {
+      return mid;
+    }
+    //if mid index is greater than the key
+    if (array[mid] > key) {
+      // set the high index to mid - 1
+      high = mid - 1;
+    } else {
+      //otherwise, if mid index is less that the key,
+      //set the low index to the next element after mid index
+      low = mid + 1;
+    }
+  }
+
+  return -1;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
